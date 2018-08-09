@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { fetchPosts } from "../actions/actions";
 import styles from "../styles";
+
 
 class PostsIndex extends Component {
     constructor(props){
@@ -26,7 +28,12 @@ class PostsIndex extends Component {
     render(){
         console.log(this.props.posts);
         return (
-            <div className="postsIndex">
+            <div>
+                <div>
+                    <Link to="/posts/new" style={styles.buttons}>
+                        Add a Post
+                    </Link>
+                </div>
                 <h1 style={styles.headers}>Posts</h1>
                 <ul>
                     {this.renderPosts()}
