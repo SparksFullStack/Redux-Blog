@@ -14,7 +14,13 @@ const styles = {
     buttons: {
         color: "dodgerblue",
         marginLeft: "100px",
-    }
+    },
+    formGroup: {
+
+    },
+    formControl: {
+
+    },
 }
 
 export default styles;

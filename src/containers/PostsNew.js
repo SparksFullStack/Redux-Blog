@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
-    renderTitleField = (field) => {
+    renderField = (field) => {
         return (
             <div>
+                <label>{field.label}</label>
                 <input
                     type="text"
                     {...field.input}
@@ -18,8 +18,21 @@ class PostsNew extends Component {
         return (
             <form>
                 <Field 
+                    label="Title"
                     name="title"
-                    component={this.renderTitleField}
+                    component={this.renderField}
+                />
+
+                <Field 
+                    label="Tags"
+                    name="tags"
+                    component={this.renderField}
+                />
+
+                <Field 
+                    label="Post Content"
+                    name="content"
+                    component={this.renderField}
                 />
             </form>
         )
