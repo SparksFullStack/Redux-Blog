@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { fetchPosts } from "../actions/actions";
+import styles from "../styles";
 
 class PostsIndex extends Component {
     constructor(props){
@@ -18,7 +19,7 @@ class PostsIndex extends Component {
 
     renderPosts = () => {
         return _.map(this.props.posts, post => {
-            return <li className='list' key={post.id}>{post.title}</li>
+            return <li style={styles.listItems} key={post.id}>{post.title}</li>
         })
     }
 
@@ -26,7 +27,7 @@ class PostsIndex extends Component {
         console.log(this.props.posts);
         return (
             <div className="postsIndex">
-                <h3>Posts</h3>
+                <h1 style={styles.headers}>Posts</h1>
                 <ul>
                     {this.renderPosts()}
                 </ul>
