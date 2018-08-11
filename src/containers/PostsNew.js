@@ -1,24 +1,36 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import styles from '../styles';
 
 class PostsNew extends Component {
     // * renderField is a function that returns the view layer of JSX and receives all the inputs (and other values) as properties on the 'field' object
     renderField = (field) => {
+        const conditionalStyles = field.meta.touched && field.meta.error ? styles.errorStyles : styles.normalStyles;
+
         return (
-            <div>
+            <div style={conditionalStyles}>
                 <label>{field.label}</label>
                 <input
                     type="text"
                     {...field.input}
                 />
+                {/* here an error is displayed if the field has been touched and not passed validation */}
+                {field.meta.touched ? field.meta.error : ""}
             </div>
         )
     }
 
+    onSubmit = (values) => {
+        console.log(values);
+    }
+
     render(){
+        //
+        const { handleSubmit } = this.props;
+
         return (
             // * all <Field> tags must be wrapped in a <form>
-            <form>
+            <form onSubmit={handleSubmit(this.onSubmit)}>
                 {/* here the 'label' property is a value that is just being passed and 'name' is the key being assigned to that part of the state. */}
                 <Field 
                     label="Title"
@@ -38,6 +50,7 @@ class PostsNew extends Component {
                     name="content"
                     component={this.renderField}
                 />
+                <button type="submit">Submit</button>
             </form>
         )
     }
@@ -68,4 +81,3 @@ export default reduxForm({
     // 'PostsNewForm' will be the key assigned to the state that contains the values submitted by this form
     form: 'PostsNewForm' 
 })(PostsNew);
-

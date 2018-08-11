@@ -21,6 +21,12 @@ const styles = {
     formControl: {
 
     },
+    errorStyles: {
+        color: "red",
+    },
+    normalStyles: {
+        
+    }
 }
 
 export default styles;
