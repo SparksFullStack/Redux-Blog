@@ -2,7 +2,7 @@
 import _ from 'lodash';
 
 // importing the action types
-import { FETCH_POSTS, FETCH_POST } from '../actions/actions';
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from '../actions/actions';
 
 export default 
 function (state = {}, action){
@@ -13,6 +13,8 @@ function (state = {}, action){
             const newState = { ...state, [action.payload.data.id]: action.payload.data };
             // console.log(newState);
             return newState;
+        case DELETE_POST:
+            return _.omit(state, action.payload);
         default:
             return state;
     }
