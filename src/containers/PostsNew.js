@@ -25,7 +25,8 @@ class PostsNew extends Component {
     }
 
     onSubmit = (values) => {
-        this.props.createPost(values);
+        // this method receives the values from the inputs and then calls the action creator
+        this.props.createPost(values, (route) => this.props.history.push(route));
     }
 
     render(){

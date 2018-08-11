@@ -21,12 +21,15 @@ class PostsIndex extends Component {
 
     renderPosts = () => {
         return _.map(this.props.posts, post => {
-            return <li style={styles.listItems} key={post.id}>{post.title}</li>
+            return <li style={styles.listItems} key={post.id}>
+                        <Link to={`/posts/${post.id}`}>
+                        {post.title}
+                        </Link>
+                    </li>
         })
     }
 
     render(){
-        console.log(this.props.posts);
         return (
             <div>
                 <div>
