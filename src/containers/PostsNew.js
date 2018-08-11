@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createPost } from "../actions/actions";
 import styles from '../styles';
 
 class PostsNew extends Component {
     // * renderField is a function that returns the view layer of JSX and receives all the inputs (and other values) as properties on the 'field' object
     renderField = (field) => {
+        // here are the conditional styles that will be set depending on the state of the field
         const conditionalStyles = field.meta.touched && field.meta.error ? styles.errorStyles : styles.normalStyles;
 
         return (
@@ -21,7 +25,7 @@ class PostsNew extends Component {
     }
 
     onSubmit = (values) => {
-        console.log(values);
+        this.props.createPost(values);
     }
 
     render(){
@@ -51,6 +55,7 @@ class PostsNew extends Component {
                     component={this.renderField}
                 />
                 <button type="submit">Submit</button>
+                <Link to="/">Cancel</Link>
             </form>
         )
     }
@@ -80,4 +85,5 @@ export default reduxForm({
     validate: validate,
     // 'PostsNewForm' will be the key assigned to the state that contains the values submitted by this form
     form: 'PostsNewForm' 
-})(PostsNew);
+    // this stacks the connect function with the reduxForm function
+})(connect(null, { createPost })(PostsNew));
